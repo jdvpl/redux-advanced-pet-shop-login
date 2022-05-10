@@ -13,6 +13,7 @@ import {
 
 import Login from './Components/screens/Login/Login';
 import Home from './Components/screens/Home/Home';
+import Adoptado from './Components/screens/Adoptado/Adoptado';
 
 
 
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/congratulations/:id" element={<Adoptado />}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>

@@ -6,7 +6,11 @@ const Header = () => {
   return (
       <Navbar className='navigator__bar' collapseOnSelect bg="dark" expand="lg" variant="dark">
           <div className="container">
-          <Navbar.Brand href="#">Redux JDVPL</Navbar.Brand>
+          <Navbar href="#">
+            <Link to="/" className="navbar-brand">
+            Redux JDVPL
+            </Link>
+          </Navbar>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">

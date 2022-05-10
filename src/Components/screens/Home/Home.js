@@ -1,11 +1,16 @@
 import React from 'react'
 import Header from '../../Header'
-import './home.css'
 import {getDogs} from '../../../mockRequests/perritos'
 import { Card } from 'react-bootstrap'
-import { Button } from 'bootstrap'
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+
+  let navigate = useNavigate();
+
+  const handleClick=(id)=> {
+    navigate('/congratulation/'+id);
+  }
   return (
 
     <>
@@ -28,7 +33,7 @@ const Home = () => {
                     
                   </Card.Text>
                   <div className="text-center">
-                  <button className="btn btn-outline-dark">Adoptar</button>
+                  <button className="btn btn-outline-dark" onClick={()=>handleClick(dog.id)}>Adoptar</button>
                   </div>
                 </Card.Body>
               </Card>
