@@ -2,15 +2,11 @@ import React from 'react'
 import Header from '../../Header'
 import {getDogs} from '../../../mockRequests/perritos'
 import { Card } from 'react-bootstrap'
-import { useNavigate } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-const Home = () => {
+const Home = ({history}) => {
 
-  let navigate = useNavigate();
 
-  const handleClick=(id)=> {
-    navigate('/congratulation/'+id);
-  }
   return (
 
     <>
@@ -33,7 +29,7 @@ const Home = () => {
                     
                   </Card.Text>
                   <div className="text-center">
-                  <button className="btn btn-outline-dark" onClick={()=>handleClick(dog.id)}>Adoptar</button>
+                  <button className="btn btn-outline-dark" onClick={()=> history.push('congratulations')}>Adoptar</button>
                   </div>
                 </Card.Body>
               </Card>
@@ -48,4 +44,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default withRouter(Home)
