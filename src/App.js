@@ -11,10 +11,8 @@ import {
 } from "react-router-dom";
 
 
-import Users from './Components/Users';
-import About from './Components/About';
-import Home from './Components/Home';
-import Header from './Components/Header';
+import Login from './Components/screens/Login/Login';
+import Home from './Components/screens/Home/Home';
 
 
 
@@ -25,16 +23,12 @@ function App() {
   return (
 
     <Provider store={store}>
-      
-    <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/users" element={<Users />}></Route>
-          <Route path="/about" element={<About />}></Route>
+          <Route path="/login" element={<Login />}></Route>
         </Routes>
       </BrowserRouter>
-    </div>
     </Provider>
   );
 }
