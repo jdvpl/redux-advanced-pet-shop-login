@@ -2,7 +2,7 @@
 import  {user as userActions} from '../constants/actiontypes'
 const INITIAL_STATE={
     loading:false,
-    authuser:null,
+    authUser:null,
     error:null,
 }
 
@@ -14,7 +14,7 @@ export default(state=INITIAL_STATE,action)=>{
             return {...state,loading:action.payload}
         }
         case userActions.SET_USER:{
-            return {...state,authuser:action.payload}
+            return {...state,authUser:action.payload}
         }
         case userActions.ERROR:{
             return {...state,error:action.payload}

@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import { Form,Button } from 'react-bootstrap'
+import { Form,Button, Alert } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import './login.css'
 import userActions from '../../../redux/actions/user'
@@ -16,6 +16,8 @@ const Login = ({user,login,history}) => {
 
   const [username, setusername] = useState('');
   const [password, setpassword] = useState('');
+
+
   return (
     <div className='login__container'>
       <div className="col-sm-12  col-md-6 login__card-from">
@@ -32,11 +34,14 @@ const Login = ({user,login,history}) => {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" value={password} onChange={(e)=>setpassword(e.target.value)} />
           </Form.Group>
-          <div className="d-grid">
-          <Button variant="primary" type="submit">
+          <Button variant="primary" className='btn-block' onClick={()=>login(username,password)}>
             Ingresar
           </Button>
-          </div>
+          {
+            user.error &&(
+              <Alert  variant="danger" className="text-center mt-3">{user.error}</Alert>
+            )
+          }
         </Form>
       </div>
     </div>
@@ -51,4 +56,4 @@ const mapDispatchToProps = ()=> ({
 
 
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps())(Login))
+export default withRouter(connect(mapStateToProps,mapDispatchToProps())(Login));
