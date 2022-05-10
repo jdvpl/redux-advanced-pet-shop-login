@@ -3,6 +3,7 @@ export const usuarios = [
     {username: 'peter', password: '12345', fullName: 'Pedro Stevens'},
     {username: 'maria', password: '12345', fullName: 'Maria Mendoza'},
     {username: 'john', password: 'john123', fullName: 'John Doe'},
+    {username: 'jdvpl', password: 'kakaroto', fullName: 'Juan Daniel Suarez'},
 ]
 
 export const login = (username, password) => {
