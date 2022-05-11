@@ -1,10 +1,11 @@
 import React from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 
 
-const Header = ({history}) => {
+const Header = ({history,user}) => {
   return (
       <Navbar className='navigator__bar' collapseOnSelect bg="dark" expand="lg" variant="dark">
           <div className="container">
@@ -24,5 +25,9 @@ const Header = ({history}) => {
       </Navbar>
   )
 }
+const mapStateToProps = ({user})=> ({
+  user
+});
 
-export default withRouter(Header)
+
+export default withRouter(connect(mapStateToProps,null)(Header));

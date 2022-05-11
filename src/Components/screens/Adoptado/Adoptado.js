@@ -1,27 +1,34 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Header from '../../Header'
-import {getDogs} from '../../../mockRequests/perritos'
 import { Card } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
-const Adoptado = () => {
+const Adoptado = ({perrito,history,user}) => {
 
-  const perritoSeleccionado=getDogs()[0];
+  useEffect(() => {
+    if(!perrito.selectedPerrito || !user.authUser){
+      history.push('/');
+    }
+  }, [perrito]);
+
+
   return (
 
     <>
       <Header/>
     <div className='container-fluid'>
-      <h3 className="mt-3 text-center">Felicidades haz adoptado a {perritoSeleccionado.nombre}</h3>
+      <h3 className="mt-3 text-center">Felicidades {user.authUser.fullName}, haz adoptado a {perrito.selectedPerrito.nombre}</h3>
       <div className="container">
-        <div className="mb-3" key={perritoSeleccionado.id}>
+        <div className="mb-3" key={perrito.selectedPerrito.id}>
               <Card >
-                <Card.Img variant="top" src={perritoSeleccionado.img} />
+                <Card.Img variant="top" src={perrito.selectedPerrito.img} />
                 <Card.Body>
-                  <Card.Title className="text-center">{perritoSeleccionado.nombre}</Card.Title>
+                  <Card.Title className="text-center">{perrito.selectedPerrito.nombre}</Card.Title>
                   <Card.Text className='text-center'>
-                    Genero: {perritoSeleccionado.genero}
+                    Genero: {perrito.selectedPerrito.genero}
                       <br />
-                      Edad: {perritoSeleccionado.edad}
+                      Edad: {perrito.selectedPerrito.edad}
                     
                   </Card.Text>
                 </Card.Body>
@@ -34,4 +41,11 @@ const Adoptado = () => {
   )
 }
 
-export default Adoptado
+
+const mapStateToProps = ({user,perrito})=> ({
+  user,
+  perrito
+});
+
+
+export default withRouter(connect(mapStateToProps,null)(Adoptado));

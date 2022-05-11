@@ -1,14 +1,28 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import Header from '../../Header'
 import {getDogs} from '../../../mockRequests/perritos'
 import { Card } from 'react-bootstrap'
 import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+import perritoActions from '../../../redux/actions/perrito'
 
-const Home = ({history}) => {
+const Home = ({history,user,perrito,setList,setSelectedDog}) => {
 
+  useEffect(() => {
+    const dogs=getDogs();
+    setList(dogs);
+  }, []);
 
+  const handleAdoptar=(dog)=>{
+    if(user.authUser){
+      setSelectedDog(dog);
+      history.push('congratulations');
+    }else{
+      history.push('login');
+
+    }
+  }
   return (
-
     <>
       <Header/>
     <div className='container-fluid'>
@@ -16,7 +30,7 @@ const Home = ({history}) => {
       <div className="container">
         <div className="row">
           {
-            getDogs().map(dog=>(
+            perrito.list.map(dog=>(
               <div className="col-md-4 mb-3" key={dog.id}>
               <Card >
                 <Card.Img variant="top" src={dog.img} />
@@ -29,7 +43,7 @@ const Home = ({history}) => {
                     
                   </Card.Text>
                   <div className="text-center">
-                  <button className="btn btn-outline-dark" onClick={()=> history.push('congratulations')}>Adoptar</button>
+                  <button className="btn btn-outline-dark" onClick={()=>handleAdoptar(dog) }>Adoptar</button>
                   </div>
                 </Card.Body>
               </Card>
@@ -44,4 +58,14 @@ const Home = ({history}) => {
   )
 }
 
-export default withRouter(Home)
+const mapStateToProps = ({user,perrito})=> ({
+  user,
+  perrito
+});
+const mapDispatchToProps = ()=> ({
+  ...perritoActions
+});
+
+
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps())(Home));

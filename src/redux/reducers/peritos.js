@@ -2,7 +2,7 @@
 import  {perrito as perritoActions} from '../constants/actiontypes'
 const INITIAL_STATE={
     loading:false,
-    list:null,
+    list:[],
     selectedPerrito:null,
 }
 
