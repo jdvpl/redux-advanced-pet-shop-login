@@ -1,6 +1,7 @@
 
 import {Provider} from 'react-redux';
-import {store} from './redux/config/store'
+import {PersistGate} from 'redux-persist/integration/react'
+import {store,persistor} from './redux/config/store'
 import {
   BrowserRouter,
   Switch,
@@ -20,6 +21,7 @@ function App() {
   return (
 
     <Provider store={store}>
+      <PersistGate persistor={persistor}>
       <BrowserRouter>
         <Switch>
           <Route path="/" exact > <Home/> </Route>
@@ -27,6 +29,7 @@ function App() {
           <Route path="/congratulations"> <Adoptado /></Route>
         </Switch>
       </BrowserRouter>
+      </PersistGate>
     </Provider>
   );
 }
